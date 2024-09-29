@@ -403,6 +403,10 @@ public class StudentServiceImpl implements StudentService{
 
 （5）`controller`包：
 
+**（易错！！！`public Response<Long> addNewStudent(@RequestBody StudentDTO studentDTO)`**
+
+​    **注意此处必须要有`RequestBody`标注，否则前后端无法交互，导致`add`接口失效）**
+
 + `StudentController`类
 
 ```java
@@ -431,7 +435,7 @@ public class StudentController {
 
     //增
     @PostMapping("/student")//POST方法标注
-    public Response<Long> addNewStudent(@RequestBody StudentDTO studentDTO){
+    public Response<Long> addNewStudent(@RequestBody StudentDTO studentDTO){//RequestBody标注
         //调用Service层中的相关方法处理请求，并将响应结果封装成一个响应对象返回
         return Response.newSuccess(studentService.addNewStudent(studentDTO));
     }
